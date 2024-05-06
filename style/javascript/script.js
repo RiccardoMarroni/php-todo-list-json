@@ -13,9 +13,28 @@ createApp({
             this.tasks.splice(index,1);
         },
         addItem() {
-            this.tasks.push({});
-            this.tasks[this.tasks.length - 1].text = this.newText;
-            this.tasks[this.tasks.length - 1].done = false;
+            const item = { ...this.newitem };
+      this.newMember = {
+        id: "",
+        text: "",
+        done: false
+      };
+      this.lastId += 1;
+      item.id = this.lastId;
+      this.team.push(item);
+      
+      const data = new FormData();
+   
+      for(let key in item){
+        data.append(key, item[key])
+      }
+      
+      axios
+      .post(this.apiUrl, data)
+      .then((res) => {
+        this.lastId = this.tasks.lenght -1;
+        console.log(res.data);
+      });
         },
         getData() {
             axios
