@@ -41,7 +41,7 @@ createApp({
               .get(this.apiUrl)
               .then((res) => {
                 console.log(res.data);
-                this.team = res.data;
+                this.tasks = res.data;
                 // this.lastId = this.team.length - 1;
               })
               .catch((error) => {
@@ -54,4 +54,4 @@ createApp({
             this.getData();
           },
     }
-).mount('#app');
+).mount('#app')
